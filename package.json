@@ -1,0 +1,13 @@
+{
+  "dependencies": { "effect": "^3.0.5" },
+  "devDependencies": {
+    "@biomejs/biome": "^1.7.1",
+    "@types/bun": "latest"
+  },
+  "name": "effect",
+  "module": "index.ts",
+  "type": "module",
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
