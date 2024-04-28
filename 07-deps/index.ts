@@ -6,7 +6,7 @@ import type { UnknownException } from 'effect/Cause'
 const program = Effect.gen(function* () {
 	yield* Console.log('Starting program...')
 
-	const number = yield* NumberService.getNumber()
+	const number = yield* NumberService.getNumber
 
 	const addedUpNumber = yield* NumberService.plusOne(number)
 

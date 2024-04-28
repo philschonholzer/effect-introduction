@@ -7,13 +7,13 @@ import { UnknownException } from 'effect/Cause'
 describe('NumberService.getNumber', () => {
 	it('gets a number', async () =>
 		Effect.gen(function* () {
-			const number = yield* NumberService.getNumber()
+			const number = yield* NumberService.getNumber
 			expect(number).toBe(1)
 		}).pipe(runTest({ rejects: false })))
 
 	it('rejects', async () =>
 		Effect.gen(function* () {
-			const number = yield* NumberService.getNumber().pipe(Effect.flip)
+			const number = yield* NumberService.getNumber.pipe(Effect.flip)
 			expect(number).toBeInstanceOf(UnknownException)
 		}).pipe(runTest({ rejects: true })))
 })

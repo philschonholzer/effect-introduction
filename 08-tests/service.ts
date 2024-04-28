@@ -4,7 +4,7 @@ import { Api } from './api'
 const make = Effect.gen(function* () {
 	const api = yield* Api
 	return {
-		getNumber: () => Effect.tryPromise(api.getNumberFromApi),
+		getNumber: api.getNumberFromApi,
 		plusOne: (a: number) => Effect.sync(() => a + 1),
 	}
 })
