@@ -1,7 +1,7 @@
 import { Console, Data, Effect } from 'effect'
 
 const program = Effect.gen(function* () {
-	yield* Console.log('Starting program...')
+	yield* Console.log('Starting program... 50/50 chance of error...')
 
 	const number = yield* getNumber()
 
@@ -57,7 +57,7 @@ function plusOne(a: number) {
 function getNumberFromApi() {
 	return new Promise<number>((resolve, reject) =>
 		setTimeout(
-			() => (Math.random() > 0.6 ? resolve(42) : reject('number not found')),
+			() => (Math.random() > 0.5 ? resolve(42) : reject('number not found')),
 			1000,
 		),
 	)
