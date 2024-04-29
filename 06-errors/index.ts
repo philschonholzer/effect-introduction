@@ -3,7 +3,7 @@ import { Console, Data, Effect } from 'effect'
 const program = Effect.gen(function* () {
 	yield* Console.log('Starting program... 50/50 chance of error...')
 
-	const number = yield* getNumber()
+	const number = yield* getNumber() /* .pipe(Effect.retry({ times: 3 })) */
 
 	const addedUpNumber = plusOne(number)
 
@@ -12,14 +12,6 @@ const program = Effect.gen(function* () {
 	Effect.catchTag('NumberNotFound', (e) =>
 		Effect.succeed(
 			`Could not get the number. Give you 42 instead. Error: ${e.message}`,
-		),
-	),
-) */
-
-/* .pipe(
-	Effect.catchAllDefect((error) =>
-		Effect.succeed(
-			`Could not get the number. Give you 42 instead. Error: ${error}`,
 		),
 	),
 ) */
@@ -33,15 +25,13 @@ Effect.runPromise(program).then(console.log)
 // Functions
 
 function getNumber() {
-	return Effect.promise(getNumberFromApi)
-
-	// return Effect.tryPromise({
-	// 	try: getNumberFromApi,
-	// 	catch: () =>
-	// 		new NumberNotFoundError({
-	// 			message: 'The answer to the universe is currently not available.',
-	// 		}),
-	// })
+	return Effect.tryPromise({
+		try: getNumberFromApi,
+		catch: () =>
+			new NumberNotFoundError({
+				message: 'The answer to the universe is currently not available.',
+			}),
+	})
 }
 
 function plusOne(a: number) {
