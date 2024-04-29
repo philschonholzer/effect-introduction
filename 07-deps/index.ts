@@ -6,6 +6,7 @@ import type { UnknownException } from 'effect/Cause'
 const program = Effect.gen(function* () {
 	yield* Console.log('Starting program...')
 
+	// Service nutzen bevor er implementiert ist
 	const number = yield* NumberService.getNumber
 
 	const addedUpNumber = yield* NumberService.plusOne(number)
@@ -29,8 +30,10 @@ function runProgram(
 function provideDependencies(
 	program: Effect.Effect<string, UnknownException, NumberService>,
 ) {
+	// Service-Implementierung deren Abhängigkeiten geben
 	const mainLayer = Layer.provide(NumberService.Live, Api.Live)
 
+	// Programm mit den Abhängigkeiten "verdrahten"
 	const runnable = Effect.provide(program, mainLayer)
 	return runnable
 }

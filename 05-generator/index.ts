@@ -12,11 +12,7 @@ const program = Effect.gen(function* () {
 
 Effect.runPromise(program).then(console.log)
 
-//
-//
-//
-//
-// Functions
+// Domain functions
 
 function getNumber() {
 	return Effect.promise(getNumberFromApi)
@@ -26,10 +22,6 @@ function plusOne(a: number) {
 	return a + 1
 }
 
-//
-//
-//
-//
 // API
 
 function getNumberFromApi() {
