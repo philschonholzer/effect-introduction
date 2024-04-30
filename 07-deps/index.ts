@@ -30,7 +30,7 @@ function runProgram(
 function provideDependencies(
 	program: Effect.Effect<string, UnknownException, NumberService>,
 ) {
-	// Service-Implementierung deren Abhängigkeiten geben
+	// Service-Implementierung deren Abhängigkeiten "bereitstellen"
 	const mainLayer = Layer.provide(NumberService.Live, Api.Live)
 
 	// Programm mit den Abhängigkeiten "verdrahten"
